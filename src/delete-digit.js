@@ -12,21 +12,23 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function deleteDigit(n) {
-  console.debug(n)
-  let newArr = n.toString().split("")
-  let newNumArr = []
-  let newStrArr = []
-for (let i =0; i<newArr.length; i++){
-  newNumArr.push(Number(newArr[i]))
-}
-let min = Math.min.apply(null, newNumArr)
-console.log(min)
- newNumArr.forEach(function(elem){
-  newStrArr.push(elem.toString())
-})
-let replaced = newStrArr.join('').replace(min.toString(), '')
+  let splitN = n.toString().split("").map(Number)
+  let arr = []
+  let maxArr = []
+  
 
-return Number(replaced);
+  
+for (let i = 0; i<splitN.length; i++){
+  let arrVal = splitN.slice()
+  arrVal.splice(i,1);
+  arr.push(arrVal)
+}
+
+for (let k = 0; k<arr.length; k++){
+maxArr.push(Number(arr[k].join("")))
+}
+
+return Math.max.apply(null, maxArr)
 }
 
 module.exports = {
